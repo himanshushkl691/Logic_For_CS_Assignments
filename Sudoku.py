@@ -23,7 +23,6 @@ def exactly_one(formula):
 
 solve_stack = Solver()
 
-A = []
 Column_Formula = []
 for i in range(9):
     Column_Formula.append([])
@@ -36,7 +35,6 @@ for i in range(9):  # row
             form = Bool('A_{}_{}_{}'.format(i + 1, j + 1, k + 1))
             Column_Formula[k][j].append(form)
             tmp.append(form)
-        A.append(tmp)
         solve_stack.add(exactly_one(tmp))
 
 for j in range(9):  # column
