@@ -51,7 +51,8 @@ for i in range(9):
             tmp.append(form)
         solve_stack.add(exactly_one(tmp))
 
-for i in range(0, 9, 3):  # row
+# condition on 3 X 3 submatrix
+for i in range(0, 9, 3):
     for j in range(0, 9, 3):
         for m in range(9):
             tmp = []
