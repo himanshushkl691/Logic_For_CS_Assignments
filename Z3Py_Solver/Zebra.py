@@ -1,7 +1,10 @@
 from z3 import *
 
 """Encoding: i_j_k is True if jth column has k as Attribute Value in Attribute row i.
-Eg. Color_2_Yellow = True means 2nd column has Yellow color in Color row attribute"""
+Eg. Color_2_Yellow = True means 2nd column has Yellow color in Color row attribute.
+Final Table displays an arrangement of attributes according to required conditions,
+each attributes has a list in which ith element represents Value present in ith 
+column for that attribute."""
 
 
 def atleast_one(formula):
