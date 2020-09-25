@@ -1,7 +1,7 @@
 from z3 import *
 
 """Encoding: i_j_k is True if jth column has k as Attribute Value in Attribute row i.
-Eg. Color_2_Yellow means 2nd column has Yellow color in Color row attribute"""
+Eg. Color_2_Yellow = True means 2nd column has Yellow color in Color row attribute"""
 
 
 def atleast_one(formula):
@@ -121,12 +121,22 @@ for i in range(1, 15):
 # print(solve_stack)
 solve_stack.check()
 model = solve_stack.model()
-print('[', end=' ')
+Answer = {"Color": [], "Nationality": [],
+          "Smoke": [], "Drink": [], "Animals": []}
+print('\n\t\t\tFINAL TABLE\n')
 for d in model.decls():
     if model[d] == True:
-        print(d.name(), ':', model[d], ' ', end=' ')
-print(']')
+        tmp = d.name().split('_')
+        Answer[tmp[0]].append(tmp[1] + '_' + tmp[2])
+for i in Answer.keys():
+    Answer[i].sort()
+    print(i + ': [', end=' ')
+    for j in Answer[i]:
+        tmp = j.split('_')[1]
+        print(tmp, end=' ')
+    print(']')
 print()
+print('\n\t\t\tANSWER REQUIRED\n')
 for d in model.decls():
     if model[d] == True:
         tmp_str = d.name().split('_')
