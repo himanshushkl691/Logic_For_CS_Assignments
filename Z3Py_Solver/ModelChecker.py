@@ -257,13 +257,13 @@ def checkModel(n, alphaI, alphaT, P):
         solve_stack.add(initial)
         solve_stack.add(loopFree)
         if solve_stack.check() == unsat:
-            print('Model is P-safe')
+            print('Model is P-safe, for k = {}'.format(RUNS))
             return
         solve_stack.reset()
         solve_stack.add(loopFree)
         solve_stack.add(Not(sub_P))
         if solve_stack.check() == unsat:
-            print('Model is P-safe')
+            print('Model is P-safe, for k = {}'.format(RUNS))
             return
         solve_stack.reset()
         # check ith run
@@ -284,9 +284,11 @@ def checkModel(n, alphaI, alphaT, P):
                 j = i
                 while j < i + n:
                     if j == i + n - 1:
-                        print('1' if hash[literals[j]] else '0', end=' )')
+                        print('x' + str(j - i) + '=',
+                              '1' if hash[literals[j]] else '0', end=' )')
                     else:
-                        print('1' if hash[literals[j]] else '0', end=', ')
+                        print('x'+str(j - i)+'=',
+                              '1' if hash[literals[j]] else '0', end=', ')
                     j += 1
                 if i < len(literals) - n - 1:
                     print(' --> ', end='')
