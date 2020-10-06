@@ -236,9 +236,9 @@ def checkModel(n, alphaI, alphaT, P):
     alphaI = encodeFormulaToZ3(createTreeIterative(alphaI))
     alphaT = encodeFormulaToZ3(createTreeIterative(alphaT))
     P = encodeFormulaToZ3(createTreeIterative(P))
-    print(alphaI)
-    print(alphaT)
-    print(P)
+    # print(alphaI)
+    # print(alphaT)
+    # print(P)
     # 0th run and sub_P is P substituted with (xi -> x_0_i)
     run = alphaI
     sub_P = P
