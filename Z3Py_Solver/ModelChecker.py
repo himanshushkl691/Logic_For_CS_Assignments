@@ -260,12 +260,6 @@ def checkModel(n, alphaI, alphaT, P):
             print('Model is P-safe, for k = {}'.format(RUNS))
             return
         solve_stack.reset()
-        solve_stack.add(loopFree)
-        solve_stack.add(Not(sub_P))
-        if solve_stack.check() == unsat:
-            print('Model is P-safe, for k = {}'.format(RUNS))
-            return
-        solve_stack.reset()
         # check ith run
         solve_stack.add(run)
         solve_stack.add(Not(sub_P))
