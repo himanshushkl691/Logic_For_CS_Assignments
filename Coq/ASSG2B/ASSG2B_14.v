@@ -1,8 +1,10 @@
+Require Import Classical_Prop.
+
 Section Pred_Logic_Assg2b.
   Variable V : Set.
   Variable S : Prop.
   Variable P : V -> Prop.
-  
+
   Section RightToLeft.
     Hypothesis H1 : (forall x : V, P x) \/ S.
     Lemma ASSG2B_14a : forall x : V, P x \/ S.
@@ -16,7 +18,7 @@ Section Pred_Logic_Assg2b.
         right.
         exact H1_ii.
     Qed.
-    
+
   End RightToLeft.
 
   Section LeftToRight.
@@ -38,8 +40,7 @@ Section Pred_Logic_Assg2b.
       right.
       exact H3.
     Qed.
-    
-    Require Import Classical_Prop.
+
     Hypothesis H1 : forall x : V, P x \/ S.
     Lemma ASSG2B_14b : (forall x : V, P x) \/ S.
     Proof.
