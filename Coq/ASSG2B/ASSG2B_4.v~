@@ -1,0 +1,6 @@
+Section Pred_Logic_Assg2b.
+  Variable V : Set.
+  Variable H : V -> (V -> Prop).
+  Hypothesis H1 : exists x y : V,  H x y \/ H y x.
+  Hypothesis H2 : ~ (exists x : V,  H x x).
+  Lemma ASSG2B_4 : exists x y : V,  ~ (x = y).
