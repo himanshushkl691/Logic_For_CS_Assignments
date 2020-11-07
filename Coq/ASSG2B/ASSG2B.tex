@@ -1,0 +1,161 @@
+\documentclass[12pt]{report}
+\usepackage[]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fullpage}
+\usepackage{coqdoc}
+\usepackage{amsmath,amssymb}
+\usepackage{url}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% This file has been automatically generated with the command
+%% coqdoc -q --latex -o ASSG2B.tex ASSG2B_1.v ASSG2B_2.v ASSG2B_3.v ASSG2B_4.v 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\coqlibrary{ASSG2B 1}{Library }{ASSG2B\_1}
+
+\begin{coqdoccode}
+\coqdocnoindent
+\coqdockw{Section} \coqdocvar{Pred\_Logic\_Assg2b}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Variable} \coqdocvar{V} : \coqdockw{Set}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Variable} \coqdocvar{P} \coqdocvar{Q} : \coqdocvar{V} \ensuremath{\rightarrow} \coqdockw{Prop}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Hypothesis} \coqdocvar{H1} : \coqdockw{\ensuremath{\forall}} \coqdocvar{x} : \coqdocvar{V},  \coqdocvar{P} \coqdocvar{x} \ensuremath{\rightarrow} \coqdocvar{Q} \coqdocvar{x}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Hypothesis} \coqdocvar{H2} : \coqdoctac{\ensuremath{\exists}} \coqdocvar{x} : \coqdocvar{V},  \coqdocvar{P} \coqdocvar{x}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Lemma} \coqdocvar{ASSG2B\_1} : \coqdoctac{\ensuremath{\exists}} \coqdocvar{x} : \coqdocvar{V},  \coqdocvar{Q} \coqdocvar{x}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Proof}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{destruct} \coqdocvar{H2} \coqdockw{as} [\coqdocvar{a} \coqdocvar{H3}].\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{\ensuremath{\exists}} \coqdocvar{a}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{pose} (\coqdocvar{H4} := \coqdocvar{H1} \coqdocvar{a}).\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{apply} \coqdocvar{H4}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{exact} \coqdocvar{H3}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Qed}.\coqdoceol
+\coqdocemptyline
+\end{coqdoccode}
+\coqlibrary{ASSG2B 2}{Library }{ASSG2B\_2}
+
+\begin{coqdoccode}
+\coqdocnoindent
+\coqdockw{Section} \coqdocvar{Pred\_Logic\_Assg2b}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Variable} \coqdocvar{V} : \coqdockw{Set}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Variable} \coqdocvar{P} \coqdocvar{Q} \coqdocvar{R} : \coqdocvar{V} \ensuremath{\rightarrow} \coqdockw{Prop}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Hypothesis} \coqdocvar{H1} : \coqdockw{\ensuremath{\forall}} \coqdocvar{x} : \coqdocvar{V},  \coqdocvar{Q} \coqdocvar{x} \ensuremath{\rightarrow} \coqdocvar{R} \coqdocvar{x}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Hypothesis} \coqdocvar{H2} : \coqdoctac{\ensuremath{\exists}} \coqdocvar{x} : \coqdocvar{V},  \coqdocvar{P} \coqdocvar{x} \ensuremath{\land} \coqdocvar{Q} \coqdocvar{x}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Lemma} \coqdocvar{ASSG2B\_2} : \coqdoctac{\ensuremath{\exists}} \coqdocvar{x} : \coqdocvar{V},  \coqdocvar{P} \coqdocvar{x} \ensuremath{\land} \coqdocvar{R} \coqdocvar{x}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Proof}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{destruct} \coqdocvar{H2} \coqdockw{as} [\coqdocvar{a} \coqdocvar{H3}].\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{destruct} \coqdocvar{H3} \coqdockw{as} [\coqdocvar{H3} \coqdocvar{H4}].\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{\ensuremath{\exists}} \coqdocvar{a}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{split}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{exact} \coqdocvar{H3}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{pose} (\coqdocvar{H5} := \coqdocvar{H1} \coqdocvar{a}).\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{apply} \coqdocvar{H5}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{exact} \coqdocvar{H4}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Qed}.\coqdoceol
+\end{coqdoccode}
+\coqlibrary{ASSG2B 3}{Library }{ASSG2B\_3}
+
+\begin{coqdoccode}
+\coqdocnoindent
+\coqdockw{Section} \coqdocvar{Pred\_Logic\_Assg2b}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Variable} \coqdocvar{V} : \coqdockw{Set}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Variable} \coqdocvar{P} \coqdocvar{Q} : \coqdocvar{V} \ensuremath{\rightarrow} \coqdockw{Prop}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Hypothesis} \coqdocvar{H1} : \coqdoctac{\ensuremath{\exists}} \coqdocvar{x},  \coqdocvar{P} \coqdocvar{x}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Hypothesis} \coqdocvar{H2} : \coqdockw{\ensuremath{\forall}} \coqdocvar{x} \coqdocvar{y} : \coqdocvar{V},  \coqdocvar{P} \coqdocvar{x} \ensuremath{\rightarrow} \coqdocvar{Q} \coqdocvar{y}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Lemma} \coqdocvar{ASSG2B\_3} : \coqdockw{\ensuremath{\forall}} \coqdocvar{y} : \coqdocvar{V},  \coqdocvar{Q} \coqdocvar{y}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Proof}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{intro} \coqdocvar{b}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{destruct} \coqdocvar{H1} \coqdockw{as} [\coqdocvar{a} \coqdocvar{H3}].\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{pose} (\coqdocvar{H4} := \coqdocvar{H2} \coqdocvar{a}).\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{pose} (\coqdocvar{H5} := \coqdocvar{H4} \coqdocvar{b}).\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{apply} \coqdocvar{H5}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{exact} \coqdocvar{H3}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Qed}.\coqdoceol
+\coqdocemptyline
+\end{coqdoccode}
+\coqlibrary{ASSG2B 4}{Library }{ASSG2B\_4}
+
+\begin{coqdoccode}
+\coqdocnoindent
+\coqdockw{Section} \coqdocvar{Pred\_Logic\_Assg2b}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Variable} \coqdocvar{V} : \coqdockw{Set}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Variable} \coqdocvar{H} : \coqdocvar{V} \ensuremath{\rightarrow} (\coqdocvar{V} \ensuremath{\rightarrow} \coqdockw{Prop}).\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Hypothesis} \coqdocvar{H1} : \coqdoctac{\ensuremath{\exists}} \coqdocvar{x} \coqdocvar{y} : \coqdocvar{V},  \coqdocvar{H} \coqdocvar{x} \coqdocvar{y} \ensuremath{\lor} \coqdocvar{H} \coqdocvar{y} \coqdocvar{x}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Hypothesis} \coqdocvar{H2} : \ensuremath{\lnot} (\coqdoctac{\ensuremath{\exists}} \coqdocvar{x} : \coqdocvar{V},  \coqdocvar{H} \coqdocvar{x} \coqdocvar{x}).\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Lemma} \coqdocvar{ASSG2B\_4} : \coqdoctac{\ensuremath{\exists}} \coqdocvar{x} \coqdocvar{y} : \coqdocvar{V},  \ensuremath{\lnot} (\coqdocvar{x} = \coqdocvar{y}).\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Proof}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{unfold} \coqdocvar{not} \coqdoctac{in} \coqdocvar{H2}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{destruct} \coqdocvar{H1} \coqdockw{as} [\coqdocvar{a} \coqdocvar{H3}].\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{destruct} \coqdocvar{H3} \coqdockw{as} [\coqdocvar{b} \coqdocvar{H3}].\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{\ensuremath{\exists}} \coqdocvar{a}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{\ensuremath{\exists}} \coqdocvar{b}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{unfold} \coqdocvar{not}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{intro} \coqdocvar{H4}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{apply} \coqdocvar{H2}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{\ensuremath{\exists}} \coqdocvar{a}.\coqdoceol
+\coqdocindent{2.00em}
+\coqdoctac{destruct} \coqdocvar{H3} \coqdockw{as} [\coqdocvar{H3\_i} \ensuremath{|} \coqdocvar{H3\_ii}].\coqdoceol
+\coqdocindent{2.00em}
+- \coqdoctac{rewrite} \ensuremath{\leftarrow} \coqdocvar{H4} \coqdoctac{in} \coqdocvar{H3\_i}.\coqdoceol
+\coqdocindent{3.00em}
+\coqdoctac{exact} \coqdocvar{H3\_i}.\coqdoceol
+\coqdocindent{2.00em}
+- \coqdoctac{rewrite} \ensuremath{\leftarrow} \coqdocvar{H4} \coqdoctac{in} \coqdocvar{H3\_ii}.\coqdoceol
+\coqdocindent{3.00em}
+\coqdoctac{exact} \coqdocvar{H3\_ii}.\coqdoceol
+\coqdocindent{1.00em}
+\coqdockw{Qed}.\coqdoceol
+\end{coqdoccode}
+\end{document}
