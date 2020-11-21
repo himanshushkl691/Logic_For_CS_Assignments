@@ -20,6 +20,7 @@ ASSIGN
         (state = q2 & queryQueue = 1)   : 0;
         TRUE                            : queryQueue;
     esac;
+FAIRNESS    running
 
 MODULE PROC2(queryQueue,suggestQueue,reserveQueue,confirmQueue)
 VAR
@@ -30,6 +31,8 @@ ASSIGN
         (state = q4 & queryQueue = 0)                       :   q5;
         (state = q5 & suggestQueue = 1)                     :   q6;
         (state = q6 & queryQueue = 0 & reserveQueue = 0)    :   {q7,q9};
+        (state = q6 & reserveQueue = 0)                     :   q7;
+        (state = q6 & queryQueue = 0)                       :   q9;
         (state = q7 & confirmQueue = 1)                     :   q8;
         (state = q9 & suggestQueue = 1)                     :   q6;
         TRUE                                                :   state;
@@ -52,6 +55,7 @@ ASSIGN
         (state = q7 & confirmQueue = 1) :   0;
         TRUE                            :   confirmQueue;
     esac;
+FAIRNESS    running
 
 MODULE PROC3(reserveQueue,confirmQueue)
 VAR
@@ -71,6 +75,7 @@ ASSIGN
         (state = a1 & confirmQueue = 0) :   1;
         TRUE                            :   confirmQueue;
     esac;
+FAIRNESS    running
 
 MODULE main
 VAR
