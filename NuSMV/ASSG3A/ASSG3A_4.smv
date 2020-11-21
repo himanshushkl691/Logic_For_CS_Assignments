@@ -23,17 +23,66 @@ ASSIGN
 
 MODULE PROC2(queryQueue,suggestQueue,reserveQueue,confirmQueue)
 VAR
-    state : {q4,q5,q6,q7,q8,q9};
+    state   : {q4,q5,q6,q7,q8,q9};
 ASSIGN
-    init(state) := q4;
-    next(state) := case
-        (state = q4 & queryQueue = 0)   : q5;
-        (state = q5 & suggestQueue = 1) : q6;
-        (state = q6 & queryQueue = 0)   : q9;
-        (state = q6 & reserveQueue = 0) : q7;
-        (state = q7 & confirmQueue = 1) : q8;
-        (state = q9 & suggestQueue = 1) : q6;
-        TRUE                            : state;
+    init(state) :=  q4;
+    next(state) :=  case
+        (state = q4 & queryQueue = 0)                       :   q5;
+        (state = q5 & suggestQueue = 1)                     :   q6;
+        (state = q6 & queryQueue = 0 & reserveQueue = 0)    :   {q7,q9};
+        (state = q7 & confirmQueue = 1)                     :   q8;
+        (state = q9 & suggestQueue = 1)                     :   q6;
+        TRUE                                                :   state;
+    esac;
+    next(queryQueue) := case
+        (state = q4 & queryQueue = 0)   :   1;
+        (state = q6 & queryQueue = 0)   :   1;
+        TRUE                            :   queryQueue;
+    esac;
+    next(suggestQueue) :=   case
+        (state = q5 & suggestQueue = 1) :   0;
+        (state = q9 & suggestQueue = 1) :   0;
+        TRUE                            :   suggestQueue;
+    esac;
+    next(reserveQueue) :=   case
+        (state = q6 & reserveQueue = 0) :   1;
+        TRUE                            :   reserveQueue;
+    esac;
+    next(confirmQueue) :=   case
+        (state = q7 & confirmQueue = 1) :   0;
+        TRUE                            :   confirmQueue;
     esac;
 
-MODULE PROC3(reserve,confirm)
+MODULE PROC3(reserveQueue,confirmQueue)
+VAR
+    state : {a0,a1,a2};
+ASSIGN
+    init(state) :=  a0;
+    next(state) :=  case
+        (state = a0 & reserveQueue = 1) :   a1;
+        (state = a1 & confirmQueue = 0) :   a2;
+        TRUE                            :   state;
+    esac;
+    next(reserveQueue) :=   case
+        (state = a0 & reserveQueue = 1) :   0;
+        TRUE                            :   reserveQueue;
+    esac;
+    next(confirmQueue) :=   case
+        (state = a1 & confirmQueue = 0) :   1;
+        TRUE                            :   confirmQueue;
+    esac;
+
+MODULE main
+VAR
+    queryQueue      :   0..1;
+    suggestQueue    :   0..1;
+    reserveQueue    :   0..1;
+    confirmQueue    :   0..1;
+    process1        :   process PROC1(queryQueue,suggestQueue);
+    process2        :   process PROC2(queryQueue,suggestQueue,reserveQueue,confirmQueue);
+    process3        :   process PROC3(reserveQueue,confirmQueue);
+ASSIGN
+    init(queryQueue)    :=  0;
+    init(suggestQueue)  :=  0;
+    init(reserveQueue)  :=  0;
+    init(confirmQueue)  :=  0;
