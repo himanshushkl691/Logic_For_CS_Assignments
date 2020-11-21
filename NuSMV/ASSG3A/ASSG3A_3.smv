@@ -1,0 +1,19 @@
+MODULE main
+IVAR
+    query   : boolean;
+    suggest : boolean;
+    reserve : boolean;
+    confirm : boolean;
+VAR
+    state   : {s0,s1,s2,s3,s4,s5};
+ASSIGN
+    init(state) := s0;
+    next(state) := case
+        (state = s0 & query)   : s1;
+        (state = s1 & suggest) : s2;
+        (state = s2 & query)   : s3;
+        (state = s2 & reserve) : s4;
+        (state = s3 & suggest) : s2;
+        (state = s4 & confirm) : s5;
+        TRUE                   : state;
+    esac;

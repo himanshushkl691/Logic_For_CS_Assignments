@@ -1,0 +1,39 @@
+MODULE PROC1(queryQueue,suggestQueue)
+VAR
+    state : {q0,q1,q2,q3};
+ASSIGN
+    init(state) := q0;
+    next(state) := case
+        (state = q0 & queryQueue = 1)   : q1;
+        (state = q1 & suggestQueue = 0) : q2;
+        (state = q2 & queryQueue = 1)   : q3;
+        (state = q3 & suggestQueue = 0) : q2;
+        TRUE                            : state;
+    esac;
+    next(suggestQueue) := case
+        (state = q1 & suggestQueue = 0) : 1;
+        (state = q3 & suggestQueue = 0) : 1;
+        TRUE                            : suggestQueue;
+    esac;
+    next(queryQueue) := case
+        (state = q0 & queryQueue = 1)   : 0;
+        (state = q2 & queryQueue = 1)   : 0;
+        TRUE                            : queryQueue;
+    esac;
+
+MODULE PROC2(queryQueue,suggestQueue,reserveQueue,confirmQueue)
+VAR
+    state : {q4,q5,q6,q7,q8,q9};
+ASSIGN
+    init(state) := q4;
+    next(state) := case
+        (state = q4 & queryQueue = 0)   : q5;
+        (state = q5 & suggestQueue = 1) : q6;
+        (state = q6 & queryQueue = 0)   : q9;
+        (state = q6 & reserveQueue = 0) : q7;
+        (state = q7 & confirmQueue = 1) : q8;
+        (state = q9 & suggestQueue = 1) : q6;
+        TRUE                            : state;
+    esac;
+
+MODULE PROC3(reserve,confirm)

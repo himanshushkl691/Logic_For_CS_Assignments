@@ -1,0 +1,11 @@
+MODULE main
+VAR
+    state : {s0,s1,s2,s3};
+ASSIGN
+    init(state) := s0;
+    next(state) := case
+        state = s0 : {s1,s2};
+        state = s1 : s0;
+        state = s2 : s0;
+        state = s3 : s0;
+    esac;

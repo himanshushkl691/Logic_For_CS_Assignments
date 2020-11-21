@@ -1,0 +1,12 @@
+MODULE main
+VAR
+    state : {new,runnable,running,terminated,blocked};
+ASSIGN
+    init(state) := new;
+    next(state) := case
+        state = new      : runnable;
+        state = runnable : running;
+        state = running  : {runnable,blocked,terminated};
+        state = blocked  : runnable;
+        TRUE             : state;
+    esac;
