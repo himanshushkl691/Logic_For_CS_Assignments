@@ -39,7 +39,7 @@ ASSIGN
     esac;
     next(queryQueue) := case
         (state = q4 & queryQueue = 0)   :   1;
-        (state = q6 & queryQueue = 0)   :   1;
+        (state = q6 & queryQueue = 0 & next(state) = q9)   :   1;
         TRUE                            :   queryQueue;
     esac;
     next(suggestQueue) :=   case
@@ -48,7 +48,7 @@ ASSIGN
         TRUE                            :   suggestQueue;
     esac;
     next(reserveQueue) :=   case
-        (state = q6 & reserveQueue = 0) :   1;
+        (state = q6 & reserveQueue = 0 & next(state) = q7) :   1;
         TRUE                            :   reserveQueue;
     esac;
     next(confirmQueue) :=   case
